@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_1_cat/core/service/service_locator.dart';
+import 'package:task_1_cat/features/auth/presentstion/cubit/auth_bloc/auth_bloc.dart';
 import 'package:task_1_cat/features/auth/presentstion/views/sections/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
@@ -6,9 +9,12 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        body: SignUpViewBody(),
+        body: BlocProvider(
+          create: (context)=> getIt.get<AuthBloc>(),
+          child: const SignUpViewBody(),  
+          ),
       ),
     );
   }

@@ -7,7 +7,7 @@ import 'package:task_1_cat/core/utils/app_assets.dart';
 import 'package:task_1_cat/core/utils/app_colors.dart';
 import 'package:task_1_cat/core/utils/app_strings.dart';
 import 'package:task_1_cat/core/utils/app_styles.dart';
-import 'package:task_1_cat/features/auth/presentstion/cubit/auth_cubit/auth_cubit.dart';
+import 'package:task_1_cat/features/auth/presentstion/cubit/auth_bloc/auth_bloc.dart';
 import 'package:task_1_cat/features/auth/presentstion/views/components/custom_btn.dart';
 import 'package:task_1_cat/features/auth/presentstion/views/components/custom_check_box.dart';
 import 'package:task_1_cat/features/auth/presentstion/views/components/custom_text_feild.dart';
@@ -17,7 +17,7 @@ class SignInViewForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
           showToast(state.successMessage);
@@ -27,23 +27,23 @@ class SignInViewForm extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        var cubit = context.read<AuthCubit>();
+        var bloc = context.read<AuthBloc>();
         return Form(
-          key: cubit.signinFormKey,
+          key: bloc.signinFormKey,
           child: Column(
             children: [
               CustomTextFormField(
                 labelText: AppStrings.enterYourEmail,
                 iconPath: Assets.imagesMail,
                 onChanged: (email) {
-                  cubit.email = email;
+                  bloc.loginEmail = email;
                 },
               ),
               CustomTextFormField(
                 labelText: AppStrings.password,
                 iconPath: Assets.imagesLock,
                 onChanged: (password) {
-                  cubit.password = password;
+                  bloc.loginPassword = password;
                 },
               ),
               Row(
@@ -78,8 +78,8 @@ class SignInViewForm extends StatelessWidget {
                   : CustomBtn(
                       text: AppStrings.next,
                       onPressed: () async {
-                        if (cubit.signinFormKey.currentState!.validate()) {
-                          await cubit.signInUser();
+                        if (bloc.signinFormKey.currentState!.validate()) {
+                          bloc.add(SignInEvent());
                         }
                       },
                     ),

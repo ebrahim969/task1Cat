@@ -16,7 +16,7 @@ class AuthRepoImplement implements AuthRepo {
       var data = await apiService.post(
         formData: false,
           endPoint: "signin", data: {"email": email, "password": password});
-      return right(data['message']);
+      return right(ResponseModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
