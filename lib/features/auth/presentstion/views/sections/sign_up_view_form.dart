@@ -17,11 +17,10 @@ class SignUpViewForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          showToast("Successfully,Check your email to verfiy your account");
+          showToast(state.successMessage);
           customReplacementNavigate(context, "/SignInView");
         } else if (state is SignUpFailure) {
           showToast(state.errorMessage);

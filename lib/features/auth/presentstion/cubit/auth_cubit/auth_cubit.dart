@@ -1,38 +1,46 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_1_cat/api_test.dart';
-import 'package:task_1_cat/core/service/api_service.dart';
-
+import 'package:task_1_cat/features/auth/data/repos/auth_repo.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit(this.authRepo) : super(AuthInitial());
 
-  var api = ApiService();
+  final AuthRepo authRepo;
   String? name;
   String? password;
   String? phone;
   String? email;
   GlobalKey<FormState> signupFormKey = GlobalKey();
+  GlobalKey<FormState> signinFormKey = GlobalKey();
 
   Future<void> signUpUser() async {
-    try {
-      emit(SignUpLoading());
-      await api.post(
-          // endPoint: "signup",
-          // name: name!,
-          // phone: phone!,
-          // email: email!,
-          // password: password!
-          );
+    emit(SignUpLoading());
+    var result = await authRepo.signUpUser(
+      name: "name!",
+      email: "email09876-09-0-@gmail.com",
+      phone: "phone!",
+      password: "password!",
+    );
+    print(result.toString());
+    result.fold((failure) {
+      emit(SignUpFailure(errorMessage: failure.errorMessage));
+    }, (success) {
+      emit(SignUpSuccess(successMessage:success['message']));
+    });
+  }
 
-      emit(SignUpSuccess());
-    } catch (e) {
-      log(e.toString());
-      emit(SignUpFailure(errorMessage: e.toString()));
-    }
+    Future<void> signInUser() async {
+    emit(SignInLoading());
+    var result = await authRepo.signInUser(
+      email: email!,
+      password: password!,
+    );
+    print(result.toString());
+    result.fold((failure) {
+      emit(SignInFailure(errorMessage: failure.errorMessage));
+    }, (success) {
+      emit(SignInSuccess(successMessage:success['message']));
+    });
   }
 }

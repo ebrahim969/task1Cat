@@ -40,13 +40,19 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromBadResponse(int? statusCode, dynamic badResponse) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(badResponse['error']['message']);
-    } else if (statusCode == 404) {
+    if (statusCode == 400 || statusCode == 403 ) {
+      return ServerFailure(badResponse['ErrorMessage']);
+    }else if(statusCode == 401)
+    {
+      return ServerFailure(
+          "Opps! there is throw with error, please try again!");
+    }
+    else if (statusCode == 404) {
       return ServerFailure("Your request not found, please try later!");
     } else if (statusCode == 500) {
       return ServerFailure("Internal server error, please try later!");
-    } else {
+    }
+    else {
       return ServerFailure(
           "Opps! there is throw with error, please try again!");
     }
