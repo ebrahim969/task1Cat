@@ -25,8 +25,8 @@ abstract class AppStyles
     fontFamily: "Montserrat"
   ),
 
-  arial400Size8 = TextStyle(
-    fontSize: 8.sp,
+  arial400Size10 = TextStyle(
+    fontSize: 10.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.kBlackColor,
     fontFamily: "arial"

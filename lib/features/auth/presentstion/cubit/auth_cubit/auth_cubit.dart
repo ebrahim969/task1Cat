@@ -26,21 +26,21 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold((failure) {
       emit(SignUpFailure(errorMessage: failure.errorMessage));
     }, (success) {
-      emit(SignUpSuccess(successMessage:success['message']));
+      emit(SignUpSuccess(successMessage:success.message));
     });
   }
 
     Future<void> signInUser() async {
     emit(SignInLoading());
     var result = await authRepo.signInUser(
-      email: email!,
-      password: password!,
+      email: "a@gmail.com",
+      password: "anas124",
     );
     print(result.toString());
     result.fold((failure) {
       emit(SignInFailure(errorMessage: failure.errorMessage));
     }, (success) {
-      emit(SignInSuccess(successMessage:success['message']));
+      emit(SignInSuccess(successMessage:success.message));
     });
   }
 }

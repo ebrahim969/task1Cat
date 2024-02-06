@@ -5,13 +5,15 @@ class ApiService {
   final Dio _dio ;
   ApiService(this._dio);
   Future<Map<String, dynamic>> post({
-    required endPoint,
+    required bool formData,
+    required String endPoint,
     required Map<String, dynamic> data,
   }) async {
-    Response response = await _dio.post(
+    var response = await _dio.post(
       "$_baseUrl$endPoint",
-      data: FormData.fromMap(data),
+      data:formData? FormData.fromMap(data) : data,
     );
+    print("//////////////skip data////////////");
     return response.data;
   }
 }
