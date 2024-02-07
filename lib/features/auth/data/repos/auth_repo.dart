@@ -8,5 +8,8 @@ abstract class AuthRepo {
       required String phone,
       required String email,
       required String password});
-  Future<Either<Failure, ResponseModel>> signInUser({required String email, required String password});
+  Future<Either<Failure, ResponseModel>> signInUser({
+    required String email,
+    required String password,
+  });
 }

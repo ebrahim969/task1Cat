@@ -9,18 +9,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   String? name;
   String? registerPassword;
   String? phone;
-  String? registeremail;
+  String? registerEmail;
   String? loginEmail;
   String? loginPassword;
   GlobalKey<FormState> signupFormKey = GlobalKey();
   GlobalKey<FormState> signinFormKey = GlobalKey();
   AuthBloc(this.authRepo) : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
+
+      // SignUp Method
       if (event is SignUpEvent) {
         emit(SignUpLoading());
         var result = await authRepo.signUpUser(
           name: name!,
-          email: registeremail!,
+          email: registerEmail!,
           phone: phone!,
           password: registerPassword!,
         );
@@ -29,13 +31,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }, (success) {
           emit(SignUpSuccess(successMessage: success.message));
         });
-      } else if (event is SignInEvent) {
+      } 
+      // SignIn Method
+      else if (event is SignInEvent) {
         emit(SignInLoading());
     var result = await authRepo.signInUser(
       email: loginEmail!,
       password: loginPassword!,
     );
-    print(result.toString());
     result.fold((failure) {
       emit(SignInFailure(errorMessage: failure.errorMessage));
     }, (success) {

@@ -43,7 +43,7 @@ class SignUpViewForm extends StatelessWidget {
                 labelText: AppStrings.validEmail,
                 iconPath: Assets.imagesMail,
                 onChanged: (email) {
-                  bloc.registeremail = email;
+                  bloc.registerEmail = email;
                 },
               ),
               CustomTextFormField(

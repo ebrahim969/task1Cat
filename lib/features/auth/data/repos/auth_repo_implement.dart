@@ -44,7 +44,7 @@ class AuthRepoImplement implements AuthRepo {
         'location':
             '{"name":"methalfa","address":"meet halfa","coordinates":[30.1572709,31.224779]}'
       });
-      return right(data['message']);
+      return right(ResponseModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

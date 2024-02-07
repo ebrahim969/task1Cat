@@ -13,7 +13,6 @@ class ApiService {
       "$_baseUrl$endPoint",
       data:formData? FormData.fromMap(data) : data,
     );
-    print("//////////////skip data////////////");
     return response.data;
   }
 }
