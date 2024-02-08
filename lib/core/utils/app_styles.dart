@@ -24,6 +24,19 @@ abstract class AppStyles
     color: AppColors.kBackgroundColor,
     fontFamily: "Montserrat"
   ),
+  montserrat700Size24 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.kBackgroundColor,
+    fontFamily: "Montserrat"
+  ),
+
+  montserrat700Size36 = TextStyle(
+    fontSize: 36.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.kBlackColor,
+    fontFamily: "Montserrat"
+  ),
 
   arial400Size10 = TextStyle(
     fontSize: 10.sp,

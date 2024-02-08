@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:task_1_cat/core/errors/api_failure.dart';
 import 'package:task_1_cat/core/service/api_service.dart';
-import 'package:task_1_cat/features/auth/data/model/response_model.dart';
+import 'package:task_1_cat/features/auth/data/model/login_response_model.dart';
+import 'package:task_1_cat/features/auth/data/model/register_response_model.dart';
 import 'package:task_1_cat/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImplement implements AuthRepo {
@@ -10,13 +11,13 @@ class AuthRepoImplement implements AuthRepo {
   AuthRepoImplement(this.apiService);
 
   @override
-  Future<Either<Failure, ResponseModel>> signInUser(
+  Future<Either<Failure, LoginResponseModel>> signInUser(
       {required String email, required String password}) async {
     try {
       var data = await apiService.post(
         formData: false,
           endPoint: "signin", data: {"email": email, "password": password});
-      return right(ResponseModel.fromJson(data));
+      return right(LoginResponseModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
@@ -27,7 +28,7 @@ class AuthRepoImplement implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, ResponseModel>> signUpUser(
+  Future<Either<Failure, RegisterResponseModel>> signUpUser(
       {required String name,
       required String phone,
       required String email,
@@ -44,7 +45,7 @@ class AuthRepoImplement implements AuthRepo {
         'location':
             '{"name":"methalfa","address":"meet halfa","coordinates":[30.1572709,31.224779]}'
       });
-      return right(ResponseModel.fromJson(data));
+      return right(RegisterResponseModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

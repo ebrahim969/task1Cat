@@ -37,6 +37,10 @@ class Assets {
   /// assets/images/splash_pic.png
   static const String imagesSplashPic = "assets/images/splash_pic.png";
 
+  /// Assets for imagesSplashPic2
+  /// assets/images/splash_pic2.png
+  static const String imagesSplashPic2 = "assets/images/splash_pic2.png";
+
   /// Assets for imagesUser
   /// assets/images/user.svg
   static const String imagesUser = "assets/images/user.svg";

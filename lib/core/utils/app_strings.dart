@@ -1,6 +1,6 @@
 abstract class AppStrings {
-  // Auth Strings
 
+  // Auth Strings
   static const welcomeBack = "Welcome back",
       signInToAccessYourAccount = "sign in to access your account",
       getStarted = "Get Started",
@@ -26,5 +26,18 @@ abstract class AppStrings {
       // Home Strings
       welcomeToHome = "Welcome To Home",
       discHome =
-          "Currently The Next Part of Home Activity & Fragementation is under development. The upcoming Part 2 is coming Soon........";
+          "Currently The Next Part of Home Activity & Fragementation is under development. The upcoming Part 2 is coming Soon........",
+      
+      // Splash and OnBoarding Strings    
+      explora = "Explora",
+      exploretheworldeasily = "Explore the world easily",
+      toyourdesire = "To your desire",
+      reachtheunknownspot = "Reach the unknown spot",
+      toyourdestination = "To your destination",
+      makeconnectswithexplora = "Make connects with explora",
+      toyourdreamtrip = "To your dream trip", 
+
+      //cached keys
+      token = "token",
+      onBoardingVisited = "onBoardingVisited";
 }

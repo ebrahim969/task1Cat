@@ -7,6 +7,7 @@ import 'package:task_1_cat/core/utils/app_assets.dart';
 import 'package:task_1_cat/core/utils/app_colors.dart';
 import 'package:task_1_cat/core/utils/app_strings.dart';
 import 'package:task_1_cat/core/utils/app_styles.dart';
+import 'package:task_1_cat/features/auth/data/function/token_saved.dart';
 import 'package:task_1_cat/features/auth/presentstion/cubit/auth_bloc/auth_bloc.dart';
 import 'package:task_1_cat/features/auth/presentstion/views/components/custom_btn.dart';
 import 'package:task_1_cat/features/auth/presentstion/views/components/custom_check_box.dart';
@@ -20,6 +21,7 @@ class SignInViewForm extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
+          tokenSaved(state.token??"");
           showToast(state.successMessage);
           customReplacementNavigate(context, "/HomeView");
         } else if (state is SignInFailure) {

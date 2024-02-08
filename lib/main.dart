@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_1_cat/core/cache/shared_pref.dart';
 import 'package:task_1_cat/core/routes/app_router.dart';
 import 'package:task_1_cat/core/service/service_locator.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+  await getIt.get<CacheHelper>().init();
   runApp(const Task1Cat());
 }
 
